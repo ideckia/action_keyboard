@@ -1,5 +1,7 @@
 package native;
 
+typedef Types = {}
+
 enum abstract Key(String) from String to String {
 	var A = "a";
 	var B = "b";
@@ -124,4 +126,35 @@ enum abstract Key(String) from String to String {
 	var AudioForward = "audio_forward";
 	var AudioRepeat = "audio_repeat";
 	var AudioRandom = "audio_random";
+}
+
+enum abstract ToggleEvent(String) from String to String {
+	var up;
+	var down;
+}
+
+typedef Point = {
+	var x:UInt;
+	var y:UInt;
+}
+
+typedef Size = {
+	var width:UInt;
+	var height:UInt;
+}
+
+typedef Rect = {
+	var x:UInt;
+	var y:UInt;
+	var width:UInt;
+	var height:UInt;
+}
+
+typedef Bitmap = {
+	var width:UInt;
+	var height:UInt;
+	var image:Any;
+	var byteWidth:UInt;
+	var bitsPerPixel:UInt;
+	var bytesPerPixel:UInt;
 }
