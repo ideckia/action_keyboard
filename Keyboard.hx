@@ -12,12 +12,12 @@ typedef Props = {
 		'audio_vol_down', 'audio_vol_up', 'audio_play', 'audio_stop', 'audio_pause', 'audio_prev', 'audio_next', 'audio_rewind', 'audio_forward',
 		'audio_repeat', 'audio_random'
 	])
-	var keyToTap:String;
+	var key_to_tap:String;
 
 	@:editable("Comma separated modifier(s) ('alt', 'command', 'control', 'shift')", '')
 	var modifiers:String;
 	@:editable("Types the string like the keyboard would.", null)
-	var typeString:String;
+	var type_string:String;
 }
 
 @:name('keyboard')
@@ -30,15 +30,15 @@ class Keyboard extends IdeckiaAction {
 
 	public function execute(currentState:ItemState):js.lib.Promise<ItemState> {
 		return new js.lib.Promise((resolve, reject) -> {
-			if (props.keyToTap != '') {
+			if (props.key_to_tap != '') {
 				var modifierArray = [];
 				if (props.modifiers != '')
 					modifierArray = props.modifiers.split(',').map(m -> StringTools.trim(m));
-				Libnut.keyTap(props.keyToTap.toLowerCase(), modifierArray);
+				Libnut.keyTap(props.key_to_tap.toLowerCase(), modifierArray);
 			}
 
-			if (props.typeString != null)
-				Libnut.typeString(props.typeString);
+			if (props.type_string != null)
+				Libnut.typeString(props.type_string);
 
 			resolve(currentState);
 		});
