@@ -23,6 +23,8 @@ typedef Props = {
 @:name('keyboard')
 @:description('Create hotkeys or write strings. A wrapper for NutJs')
 class Keyboard extends IdeckiaAction {
+	static var LINUX_PROBLEMATIC_KEYS = ['@', '_', ':'];
+
 	override function init(initialState:ItemState):js.lib.Promise<ItemState> {
 		Libnut.setKeyboardDelay(0);
 		return super.init(initialState);
@@ -37,10 +39,26 @@ class Keyboard extends IdeckiaAction {
 				Libnut.keyTap(props.key_to_tap.toLowerCase(), modifierArray);
 			}
 
-			if (props.type_string != null)
-				Libnut.typeString(props.type_string);
+			if (props.type_string != null) {
+				if (Sys.systemName() == 'Linux') {
+					var char;
+					for (i in 0...props.type_string.length) {
+						char = props.type_string.charAt(i);
+						if (LINUX_PROBLEMATIC_KEYS.indexOf(char) != -1 || isUpperCase(char))
+							Libnut.keyTap(char, 'shift');
+						else
+							Libnut.keyTap(char);
+					}
+				} else {
+					Libnut.typeString(props.type_string);
+				}
+			}
 
 			resolve(currentState);
 		});
+	}
+
+	inline function isUpperCase(char:String) {
+		return ~/[A-Z]/.match(char);
 	}
 }
