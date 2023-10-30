@@ -30,7 +30,7 @@ class Keyboard extends IdeckiaAction {
 		return super.init(initialState);
 	}
 
-	public function execute(currentState:ItemState):js.lib.Promise<ItemState> {
+	public function execute(currentState:ItemState):js.lib.Promise<ActionOutcome> {
 		return new js.lib.Promise((resolve, reject) -> {
 			if (props.key_to_tap != '') {
 				var modifierArray = [];
@@ -54,7 +54,7 @@ class Keyboard extends IdeckiaAction {
 				}
 			}
 
-			resolve(currentState);
+			resolve(new ActionOutcome({state: currentState}));
 		});
 	}
 
