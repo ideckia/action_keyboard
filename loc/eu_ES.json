@@ -1,0 +1,18 @@
+[
+	{
+		"id": "action_description",
+		"text": "Tekla-lasterrak sortu edo testuak idatzi. NutJs-en inguruan sortua"
+	},
+	{
+		"id": "prop_key_to_tap",
+		"text": "Tekla bat sakatu."
+	},
+	{
+		"id": "prop_modifiers",
+		"text": "Komaz banatutako aldagaia(k) ('alt', 'command', 'control', 'shift')."
+	},
+	{
+		"id": "prop_type_string",
+		"text": "Teklatu batek bezala idatziko du testua."
+	}
+]

@@ -3,7 +3,7 @@ import native.Libnut;
 using api.IdeckiaApi;
 
 typedef Props = {
-	@:editable("Tap a key.", '', [
+	@:editable("prop_key_to_tap", '', [
 		'', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'f1', 'f2',
 		'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17', 'f18', 'f19', 'f20', 'f21', 'f22', 'f23', 'f24',
 		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'numpad_0', 'numpad_1', 'numpad_2', 'numpad_3', 'numpad_4', 'numpad_5', 'numpad_6', 'numpad_7',
@@ -14,14 +14,15 @@ typedef Props = {
 	])
 	var key_to_tap:String;
 
-	@:editable("Comma separated modifier(s) ('alt', 'command', 'control', 'shift')", '')
+	@:editable("prop_modifiers", '')
 	var modifiers:String;
-	@:editable("Types the string like the keyboard would.", null)
+	@:editable("prop_type_string", null)
 	var type_string:String;
 }
 
 @:name('keyboard')
-@:description('Create hotkeys or write strings. A wrapper for NutJs')
+@:description('action_description')
+@:localize
 class Keyboard extends IdeckiaAction {
 	static var LINUX_PROBLEMATIC_KEYS = ['@', '_', ':'];
 

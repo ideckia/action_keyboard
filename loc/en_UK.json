@@ -1,0 +1,18 @@
+[
+	{
+		"id": "action_description",
+		"text": "Create hotkeys or write strings. A wrapper for NutJs"
+	},
+	{
+		"id": "prop_key_to_tap",
+		"text": "Tap a key."
+	},
+	{
+		"id": "prop_modifiers",
+		"text": "Comma separated modifier(s) ('alt', 'command', 'control', 'shift')."
+	},
+	{
+		"id": "prop_type_string",
+		"text": "Types the string like the keyboard would."
+	}
+]
