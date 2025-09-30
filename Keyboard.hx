@@ -4,13 +4,121 @@ using api.IdeckiaApi;
 
 typedef Props = {
 	@:editable("prop_key_to_tap", '', [
-		'', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'f1', 'f2',
-		'f3', 'f4', 'f5', 'f6', 'f7', 'f8', 'f9', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17', 'f18', 'f19', 'f20', 'f21', 'f22', 'f23', 'f24',
-		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'numpad_0', 'numpad_1', 'numpad_2', 'numpad_3', 'numpad_4', 'numpad_5', 'numpad_6', 'numpad_7',
-		'numpad_8', 'numpad_9', 'space', 'escape', 'tab', 'alt', 'control', 'shift', 'command', '~', '-', '=', 'backspace', '[', ']', '\\', ';', "'", 'enter',
-		',', '.', '/', 'left', 'up', 'right', 'down', 'printscreen', 'insert', 'delete', 'home', 'end', 'pageup', 'pagedown', 'enter', 'audio_mute',
-		'audio_vol_down', 'audio_vol_up', 'audio_play', 'audio_stop', 'audio_pause', 'audio_prev', 'audio_next', 'audio_rewind', 'audio_forward',
-		'audio_repeat', 'audio_random'
+		'',
+		'a',
+		'b',
+		'c',
+		'd',
+		'e',
+		'f',
+		'g',
+		'h',
+		'i',
+		'j',
+		'k',
+		'l',
+		'm',
+		'n',
+		'o',
+		'p',
+		'q',
+		'r',
+		's',
+		't',
+		'u',
+		'v',
+		'w',
+		'x',
+		'y',
+		'z',
+		'f1',
+		'f2',
+		'f3',
+		'f4',
+		'f5',
+		'f6',
+		'f7',
+		'f8',
+		'f9',
+		'f10',
+		'f11',
+		'f12',
+		'f13',
+		'f14',
+		'f15',
+		'f16',
+		'f17',
+		'f18',
+		'f19',
+		'f20',
+		'f21',
+		'f22',
+		'f23',
+		'f24',
+		'0',
+		'1',
+		'2',
+		'3',
+		'4',
+		'5',
+		'6',
+		'7',
+		'8',
+		'9',
+		'numpad_0',
+		'numpad_1',
+		'numpad_2',
+		'numpad_3',
+		'numpad_4',
+		'numpad_5',
+		'numpad_6',
+		'numpad_7',
+		'numpad_8',
+		'numpad_9',
+		'space',
+		'escape',
+		'tab',
+		'alt',
+		'control',
+		'shift',
+		'command',
+		'~',
+		'-',
+		'=',
+		'backspace',
+		'[',
+		']',
+		'\\',
+		';',
+		"'",
+		'enter',
+		',',
+		'.',
+		'/',
+		'left',
+		'up',
+		'right',
+		'down',
+		'printscreen',
+		'insert',
+		'delete',
+		'home',
+		'end',
+		'pageup',
+		'pagedown',
+		'enter',
+		'audio_mute',
+		'audio_vol_down',
+		'audio_vol_up',
+		'audio_play',
+		'audio_stop',
+		'audio_pause',
+		'audio_prev',
+		'audio_next',
+		'audio_rewind',
+		'audio_forward',
+		'audio_repeat',
+		'audio_random'
 	])
 	var key_to_tap:String;
 
@@ -18,13 +126,15 @@ typedef Props = {
 	var modifiers:String;
 	@:editable("prop_type_string", null)
 	var type_string:String;
+	@:editable("prop_enter_after_text", false)
+	var press_enter_after_text:Bool;
 }
 
 @:name('keyboard')
 @:description('action_description')
 @:localize
 class Keyboard extends IdeckiaAction {
-	static var LINUX_PROBLEMATIC_KEYS = ['@', '_', ':'];
+	static var LINUX_PROBLEMATIC_KEYS = ['@', '_', ':', '!'];
 
 	override function init(initialState:ItemState):js.lib.Promise<ItemState> {
 		Libnut.setKeyboardDelay(0);
@@ -53,6 +163,9 @@ class Keyboard extends IdeckiaAction {
 				} else {
 					Libnut.typeString(props.type_string);
 				}
+
+				if (props.press_enter_after_text)
+					Libnut.keyTap(native.Types.Key.Enter);
 			}
 
 			resolve(new ActionOutcome({state: currentState}));

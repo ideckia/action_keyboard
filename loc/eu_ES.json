@@ -14,5 +14,9 @@
 	{
 		"id": "prop_type_string",
 		"text": "Teklatu batek bezala idatziko du testua."
+	},
+	{
+		"id": "prop_enter_after_text",
+		"text": "Testua idatzi eta gero Sartu sakatzea nahi duzu?"
 	}
 ]

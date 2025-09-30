@@ -1,7 +1,7 @@
 [
 	{
 		"id": "action_description",
-		"text": "Create hotkeys or write strings. A wrapper for NutJs"
+		"text": "Create hotkeys or write text. A wrapper for NutJs"
 	},
 	{
 		"id": "prop_key_to_tap",
@@ -13,6 +13,10 @@
 	},
 	{
 		"id": "prop_type_string",
-		"text": "Types the string like the keyboard would."
+		"text": "Types the text like the keyboard would."
+	},
+	{
+		"id": "prop_enter_after_text",
+		"text": "Do you want to press Enter after text?"
 	}
 ]
