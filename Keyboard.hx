@@ -134,7 +134,7 @@ typedef Props = {
 @:description('action_description')
 @:localize
 class Keyboard extends IdeckiaAction {
-	static var LINUX_PROBLEMATIC_KEYS = ['@', '_', ':', '!'];
+	static var LINUX_PROBLEMATIC_KEYS_SHIFT = ['@', '_', ':', '!', '%', '&', '{', '}', '~'];
 
 	override function init(initialState:ItemState):js.lib.Promise<ItemState> {
 		Libnut.setKeyboardDelay(0);
@@ -155,8 +155,8 @@ class Keyboard extends IdeckiaAction {
 					var char;
 					for (i in 0...props.type_string.length) {
 						char = props.type_string.charAt(i);
-						if (LINUX_PROBLEMATIC_KEYS.indexOf(char) != -1 || isUpperCase(char))
-							Libnut.keyTap(char, 'shift');
+						if (LINUX_PROBLEMATIC_KEYS_SHIFT.indexOf(char) != -1 || isUpperCase(char))
+							Libnut.keyTap(char, native.Types.Key.Shift);
 						else
 							Libnut.keyTap(char);
 					}
